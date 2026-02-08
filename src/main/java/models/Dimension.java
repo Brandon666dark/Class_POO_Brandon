@@ -17,4 +17,12 @@ public class Dimension {
     public int getAlto() {
         return alto;
     }
+
+    public void setAncho(int ancho) {
+        this.ancho = ancho;
+    }
+
+    public void setAlto(int alto) {
+        this.alto = alto;
+    }
 }

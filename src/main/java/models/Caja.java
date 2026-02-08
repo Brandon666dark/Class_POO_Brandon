@@ -1,27 +1,21 @@
 package models;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import processing.core.PApplet;
 
 public class Caja {
 
-    private Posicion posicion;
-    private Dimension dimension;
-    private Color color;
+    private Posicion pos;
+    private Dimension dim;
+    private int color;
 
-    public Caja(Posicion posicion, Dimension dimension, Color color) {
-        this.posicion = posicion;
-        this.dimension = dimension;
+    public Caja(Posicion pos, Dimension dim, int color) {
+        this.pos = pos;
+        this.dim = dim;
         this.color = color;
     }
 
-    public void dibujar(Graphics g) {
-        g.setColor(color);
-        g.fillRect(
-            posicion.getX(),
-            posicion.getY(),
-            dimension.getAncho(),
-            dimension.getAlto()
-        );
+    public void dibujar(PApplet p) {
+        p.fill(color);
+        p.rect(pos.getX(), pos.getY(), dim.getAncho(), dim.getAlto());
     }
 }

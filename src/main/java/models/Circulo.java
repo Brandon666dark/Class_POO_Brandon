@@ -1,27 +1,21 @@
 package models;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import processing.core.PApplet;
 
 public class Circulo {
 
-    private Posicion posicion;
+    private Posicion pos;
     private int radio;
-    private Color color;
+    private int color;
 
-    public Circulo(Posicion posicion, int radio, Color color) {
-        this.posicion = posicion;
+    public Circulo(Posicion pos, int radio, int color) {
+        this.pos = pos;
         this.radio = radio;
         this.color = color;
     }
 
-    public void dibujar(Graphics g) {
-        g.setColor(color);
-        g.fillOval(
-            posicion.getX(),
-            posicion.getY(),
-            radio * 2,
-            radio * 2
-        );
+    public void dibujar(PApplet p) {
+        p.fill(color);
+        p.ellipse(pos.getX(), pos.getY(), radio * 2, radio * 2);
     }
 }
