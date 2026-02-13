@@ -14,12 +14,12 @@ public class Dimension {
         return ancho;
     }
 
-    public int getAlto() {
-        return alto;
-    }
-
     public void setAncho(int ancho) {
         this.ancho = ancho;
+    }
+
+    public int getAlto() {
+        return alto;
     }
 
     public void setAlto(int alto) {

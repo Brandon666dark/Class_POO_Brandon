@@ -1,71 +1,78 @@
 package com.mycompany.poo;
 
-import processing.core.PApplet;
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import models.*;
 
-public class POO extends PApplet {
+public class POO extends JPanel {
+
+    private Circulo circulo;
+    private Cuadrado cuadrado;
+
+    private int dx = 3;
+    private int dy = 3;
+
+    public POO() {
+
+        circulo = new Circulo(
+                new Posicion(50, 50),
+                new Dimension(60, 60),
+                Color.RED
+        );
+
+        cuadrado = new Cuadrado(
+                new Posicion(200, 100),
+                new Dimension(80, 80),
+                Color.BLUE
+        );
+
+        Timer timer = new Timer(20, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                circulo.mover(dx, dy);
+
+                // Rebote horizontal
+                if (circulo.getPosicion().getX() <= 0 ||
+                    circulo.getPosicion().getX() + circulo.getDimension().getAncho() >= getWidth()) {
+                    dx *= -1;
+                }
+
+                // Rebote vertical
+                if (circulo.getPosicion().getY() <= 0 ||
+                    circulo.getPosicion().getY() + circulo.getDimension().getAlto() >= getHeight()) {
+                    dy *= -1;
+                }
+
+                repaint();
+            }
+        });
+
+        timer.start();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        circulo.dibujar(g);
+        cuadrado.dibujar(g);
+    }
 
     public static void main(String[] args) {
-        PApplet.main("com.mycompany.poo.POO");
-    }
 
-    @Override
-    public void settings() {
-        size(500, 400);
-    }
+        JFrame frame = new JFrame("Proyecto POO - Animación");
+        POO panel = new POO();
 
-    @Override
-    public void setup() {
-        background(255);
-    }
-
-    @Override
-    public void draw() {
-        background(255);
-
-        // ===== SOL =====
-        Circulo sol = new Circulo(new Posicion(50, 40), 40, color(255, 255, 0));
-        sol.dibujar(this);
-
-        // ===== CASA =====
-        Caja casa = new Caja(
-                new Posicion(150, 180),
-                new Dimension(200, 150),
-                color(178, 102, 51)
-        );
-        casa.dibujar(this);
-
-        // ===== TECHO =====
-        Triangulo techo = new Triangulo(
-                new Posicion(130, 130),
-                240,
-                60,
-                color(255, 0, 0)
-        );
-        techo.dibujar(this);
-
-        // ===== PUERTA =====
-        Caja puerta = new Caja(
-                new Posicion(235, 240),
-                new Dimension(40, 90),
-                color(80)
-        );
-        puerta.dibujar(this);
-
-        // ===== VENTANAS =====
-        Caja ventana1 = new Caja(
-                new Posicion(175, 210),
-                new Dimension(40, 40),
-                color(0, 255, 255)
-        );
-
-        Caja ventana2 = new Caja(
-                new Posicion(285, 210),
-                new Dimension(40, 40),
-                color(0, 255, 255)
-        );
-
-        ventana1.dibujar(this);
-        ventana2.dibujar(this);
+        frame.add(panel);
+        frame.setSize(600, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 }

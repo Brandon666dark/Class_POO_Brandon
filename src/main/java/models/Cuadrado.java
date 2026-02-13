@@ -2,16 +2,16 @@ package models;
 
 import java.awt.Graphics;
 
-public class Circulo extends Figura {
+public class Cuadrado extends Figura {
 
-    public Circulo(Posicion posicion, Dimension dimension, java.awt.Color color) {
+    public Cuadrado(Posicion posicion, Dimension dimension, java.awt.Color color) {
         super(posicion, dimension, color);
     }
 
     @Override
     public void dibujar(Graphics g) {
         g.setColor(color);
-        g.fillOval(
+        g.fillRect(
                 posicion.getX(),
                 posicion.getY(),
                 dimension.getAncho(),
