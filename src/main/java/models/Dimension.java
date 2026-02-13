@@ -2,27 +2,19 @@ package models;
 
 public class Dimension {
 
-    private int ancho;
-    private int alto;
+    private float ancho;
+    private float alto;
 
-    public Dimension(int ancho, int alto) {
+    public Dimension(float ancho, float alto) {
         this.ancho = ancho;
         this.alto = alto;
     }
 
-    public int getAncho() {
+    public float getAncho() {
         return ancho;
     }
 
-    public void setAncho(int ancho) {
-        this.ancho = ancho;
-    }
-
-    public int getAlto() {
+    public float getAlto() {
         return alto;
-    }
-
-    public void setAlto(int alto) {
-        this.alto = alto;
     }
 }

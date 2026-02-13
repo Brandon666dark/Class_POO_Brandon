@@ -1,21 +1,21 @@
 package models;
 
-import java.awt.Graphics;
+import processing.core.PApplet;
 
 public class Circulo extends Figura {
 
-    public Circulo(Posicion posicion, Dimension dimension, java.awt.Color color) {
-        super(posicion, dimension, color);
+    public Circulo(Posicion posicion, Dimension dimension) {
+        super(posicion, dimension);
     }
 
     @Override
-    public void dibujar(Graphics g) {
-        g.setColor(color);
-        g.fillOval(
-                posicion.getX(),
-                posicion.getY(),
-                dimension.getAncho(),
-                dimension.getAlto()
+    public void dibujar(PApplet app) {
+        app.fill(255, 0, 0);
+        app.ellipse(
+            posicion.getX(),
+            posicion.getY(),
+            dimension.getAncho(),
+            dimension.getAlto()
         );
     }
 }

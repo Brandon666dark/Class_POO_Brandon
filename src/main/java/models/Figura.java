@@ -1,32 +1,36 @@
 package models;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import processing.core.PApplet;
 
 public abstract class Figura {
 
     protected Posicion posicion;
     protected Dimension dimension;
-    protected Color color;
+    protected float dx = 3;
+    protected float dy = 3;
 
-    public Figura(Posicion posicion, Dimension dimension, Color color) {
+    public Figura(Posicion posicion, Dimension dimension) {
         this.posicion = posicion;
         this.dimension = dimension;
-        this.color = color;
     }
 
-    public Posicion getPosicion() {
-        return posicion;
-    }
-
-    public Dimension getDimension() {
-        return dimension;
-    }
-
-    public void mover(int dx, int dy) {
+    public void mover() {
         posicion.setX(posicion.getX() + dx);
         posicion.setY(posicion.getY() + dy);
     }
 
-    public abstract void dibujar(Graphics g);
+    public void rebotar(PApplet app) {
+
+        if (posicion.getX() <= 0 || 
+            posicion.getX() + dimension.getAncho() >= app.width) {
+            dx *= -1;
+        }
+
+        if (posicion.getY() <= 0 || 
+            posicion.getY() + dimension.getAlto() >= app.height) {
+            dy *= -1;
+        }
+    }
+
+    public abstract void dibujar(PApplet app);
 }

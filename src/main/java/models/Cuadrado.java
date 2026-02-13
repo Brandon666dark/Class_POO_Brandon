@@ -1,21 +1,21 @@
 package models;
 
-import java.awt.Graphics;
+import processing.core.PApplet;
 
 public class Cuadrado extends Figura {
 
-    public Cuadrado(Posicion posicion, Dimension dimension, java.awt.Color color) {
-        super(posicion, dimension, color);
+    public Cuadrado(Posicion posicion, Dimension dimension) {
+        super(posicion, dimension);
     }
 
     @Override
-    public void dibujar(Graphics g) {
-        g.setColor(color);
-        g.fillRect(
-                posicion.getX(),
-                posicion.getY(),
-                dimension.getAncho(),
-                dimension.getAlto()
+    public void dibujar(PApplet app) {
+        app.fill(0, 0, 255);
+        app.rect(
+            posicion.getX(),
+            posicion.getY(),
+            dimension.getAncho(),
+            dimension.getAlto()
         );
     }
 }
